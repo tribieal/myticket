@@ -1,0 +1,191 @@
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta name="Robots"   content="none"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Cache-Control"  content="no-cache"/> 
+<meta http-equiv="pragma"  content="no-cache"/> 
+<title>铁路客户服务中心</title>
+<link  href="/otsweb/css/style.css" rel="stylesheet"  type="text/css"/>
+<link  href="/otsweb/css/contact.css" rel="stylesheet"  type="text/css"/>
+<link href="/otsweb/css/validation.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/otsweb/css/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="/otsweb/css/suggest.css"/>
+<link href="/otsweb/css/cupertino/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="http://www.12306.cn/mormhweb/images/favicon.ico"/>
+<script type="text/javascript" src="/otsweb/js/common/iepngfix_tilebg.js?version=1.9"></script>
+<script src="/otsweb/js/common/jquery-1.4.2.min.js?version=1.9" type="text/javascript"></script>
+<script src="/otsweb/js/common/autoHeight.js?version=1.9" type="text/javascript"></script>
+<script src="/otsweb/js/common/jquery.bgiframe.min.js?version=1.9" type="text/javascript"></script>
+<script src="/otsweb/js/common/jquery.easyui.min.js?version=1.9" type="text/javascript"></script>
+<script src="/otsweb/js/common/datepicker/WdatePicker.js?version=1.9" type="text/javascript"></script>
+<script src="/otsweb/js/common/j.suggest.js?version=1.9" type="text/javascript"></script>
+<script src="/otsweb/js/common/trainCodeSuggest.js?version=1.9" type="text/javascript"></script>
+<style>
+       div,img,li,input,a { behavior: url("/otsweb/js/common/iepngfix.htc") }
+</style>
+
+
+</head>
+<body>
+
+
+
+<script src="/otsweb/js/common/jquery-ui-1.8.2.custom.dialog.min.js?version=1.9"
+	type="text/javascript"></script>	
+<script src="/otsweb/js/common/pop_message.js?version=1.9"
+	type="text/javascript"></script>
+<div class="conWrap" >
+<div id="menu_w" class="menu_w" >
+      <div id="menu_left" class="menu_left">
+        <ul>
+          <li><a href="/otsweb/order/querySingleAction.do?method=init" class="n_on" target="main"><cite>车票预订</cite></a></li>
+<li><a href="http://dynamic.12306.cn/TrainQuery/leftTicketByStation.jsp" class="n_out" target="main"><cite>余票查询</cite></a></li>
+
+<li name="horverLi"><a href="#" class="n_out"><cite>列车时刻表查询</cite></a> 
+<p style="width:135px">
+   <a href="http://dynamic.12306.cn/TrainQuery/trainPassStationByTrainCode.jsp" target="main">车次查询</a>
+   <a href="http://dynamic.12306.cn/TrainQuery/trainInfoByStation.jsp" target="main">发到站查询</a>
+   <a href="http://dynamic.12306.cn/TrainQuery/ticketPriceByStation.jsp" target="main">票价查询</a>
+   <a href="http://dynamic.12306.cn/TrainQuery/middleStation.jsp" target="main">中转查询</a>
+   <a href="http://dynamic.12306.cn/TrainQuery/passTrainInfoByStation.jsp" target="main">车站经过车次查询</a>
+</p>
+</li>
+<li><a href="http://dynamic.12306.cn/map_zwdcx/CCCX.jsp" class="n_out"  target="main"><cite>正晚点查询</cite></a></li>
+<li><a href="http://dynamic.12306.cn/TrainQuery/sellTicketStation.jsp" class="n_out"  target="main"><cite>客票代售点</cite></a></li>
+<li><a href="http://dynamic.12306.cn/TrainQuery/TrainInfoByCity.jsp" class="n_out"  target="main"><cite>铁路旅程规划</cite></a></li>
+</ul>
+</div>
+
+<div class="menu_r">
+    <ul>
+      <li class="menu_sline"><a href="/otsweb/loginAction.do?method=initForMy12306"  class="n_out" target="main"><cite>我的12306</cite></a></li>
+      <li id="login_out"><a href="/otsweb/login.jsp" class="n_out" target="main"><cite>登录</cite></a></li>
+      <li id="username_"><a href="/otsweb/registAction.do?method=regitNote" class="n_out"  target="main"><cite>注册</cite></a></li>
+      
+    </ul>
+  </div>
+</div>
+    <script>
+    $(function(){
+    	//if(!$.browser.msie){
+    	//	alert("非常抱歉，系统目前暂不支持您的浏览器！");
+    	//}
+     $('.menu_left ul li[name="horverLi"]').hover(
+		function(){
+		   $(this).find('p').stop(true,true).show();
+		},function(){
+     $(this).find('p').stop(true,true).hide();
+		  });
+	});
+        
+         $("#menu_w a").bind("click",function(){
+        	 $("#menu_w a").attr("class","n_out");
+             $(this).attr("class","n_on");
+          });
+         function hideMenu(){
+             $("#menu_w").hide();
+             doIframe() ;
+         }
+         function showMenu(){
+             $("#menu_w").show();
+             doIframe() ;
+         }
+         function clickMenu(title){
+             $("#menu_w a").each(function(){
+                if($(this).find("cite").length>0){
+                 if($(this).find("cite")[0].innerHTML == title){
+                	 $(this).click();
+                  }
+                }
+             });
+         }
+
+         function hasLogin(_name)
+         {
+             $("#username_ a").attr("href","/otsweb/sysuser/user_info.jsp");
+             $("#username_ a > cite").html(_name);
+        	 $("#login_out a").attr("href","/otsweb/loginAction.do?method=logout");
+        	 $("#login_out a > cite").html("退出");
+         }
+
+       //退出登录
+         function notLogin(){
+        	 $("#username_ a").attr("href","/otsweb/registAction.do?method=regitNote");
+        	 $("#username_ a > cite").html("注册");
+         	 $("#login_out a").attr("href","/otsweb/loginAction.do?method=init");
+        	 $("#login_out a > cite").html("登录");
+         }
+         
+          $(document).ready(function(){
+             var iframeForwardUrl = "http://dynamic.12306.cn/TrainQuery/leftTicketByStation.jsp";
+   			if (iframeForwardUrl != ""){
+   				$("#main")[0].src=iframeForwardUrl;
+   				if(iframeForwardUrl == "http://dynamic.12306.cn/TrainQuery/leftTicketByStation.jsp"){
+   					clickMenu('余票查询');
+   	   			}else if(iframeForwardUrl == "http://dynamic.12306.cn/TrainQuery/trainPassStationByTrainCode.jsp"){
+   	   				clickMenu('列车时刻表查询');
+   	   	   		}else if(iframeForwardUrl == "http://dynamic.12306.cn/TrainQuery/ticketPriceByStation.jsp"){
+   	   				clickMenu('列车时刻表查询');
+   	   	   		}else if(iframeForwardUrl == "http://dynamic.12306.cn/TrainQuery/sellTicketStation.jsp"){
+   	   	   			clickMenu('客票代售点');
+   	   	   		}else if(iframeForwardUrl == "http://dynamic.12306.cn/map_zwdcx/CCCX.jsp"){
+   	   	   			clickMenu('正晚点查询');
+   	   	   		}
+   	   	   		
+   			}else{
+   			    $("#main")[0].src="/otsweb/loginAction.do?method=init";
+   			}
+          });
+    </script>
+    <div class="enter_w" style="width:960px">
+       <iframe id="main"
+			name="main" frameborder="0" class="autoHeight"
+			 width="100%"
+			scrolling="auto"></iframe>
+			
+			<iframe id="ictiframe" src="" style="height:0px;width:0px;diapay:none"/>
+			
+    </div>
+    </div>
+</body>
+</html>
+
+<script language="javascript">
+		var message = "";
+        var messageShow ="";
+        var flag ='null';
+        if(messageShow != ""){
+			if(flag == 'u'){
+				$("#messageUp").css({display:"inline"});
+				document.getElementById("messageUp").innerHTML = message;
+			}else{
+				$("#messageDown").css({display:"inline"});
+				document.getElementById("messageDown").innerHTML = message;
+			}
+         }else{
+     		if ( message != ""){ 
+    			alert(message);
+
+    		}
+
+         } 
+</script>
